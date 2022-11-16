@@ -14,8 +14,13 @@ int main()
 	a.Insert(20);
 	a.Insert(1);
 	a.Insert(1);
+	a.Insert(90);
+	a.Insert(25);
 
 	a.Print();
 
+	cout << a.SearchMin() << endl;
+	cout << a.SearchMax() << endl;
+	
 	return 0;
 }

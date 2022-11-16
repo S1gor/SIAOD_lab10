@@ -13,16 +13,20 @@ private:
 
 	Node* root = nullptr;
 
-	void InsertNode(Node* node, int data);
+	Node* InsertNode(Node* node, int data);
+	Node* RemoveNode(Node* node, int data);
 	void PrintNode(Node* node);
-	void RemoveNode(Node* node, int data);
 
+	int SearchMinNode(Node* node);
+	int SearchMaxNode(Node* node);
 
 
 public:
 	void Insert(int data);
-	void Print();
 	void Remove(int data);
+	void Print();
+
+	int SearchMin();
+	int SearchMax();
 
 };
-
