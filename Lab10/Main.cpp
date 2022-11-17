@@ -19,8 +19,8 @@ int main()
 
 	a.Print();
 
-	cout << a.SearchMin() << endl;
-	cout << a.SearchMax() << endl;
-	
+	a.Remove(20);
+	a.Print();
+
 	return 0;
 }

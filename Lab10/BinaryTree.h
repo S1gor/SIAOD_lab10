@@ -6,9 +6,10 @@ private:
 	struct Node
 	{
 		int data;
+		int counter;
 		Node* left;
 		Node* right;
-		int counter;
+		Node* parent;
 	};
 
 	Node* root = nullptr;
@@ -17,8 +18,11 @@ private:
 	Node* RemoveNode(Node* node, int data);
 	void PrintNode(Node* node);
 
+	Node* SearchNode(Node* node, int data);
 	int SearchMinNode(Node* node);
 	int SearchMaxNode(Node* node);
+
+	int SuccessorNode(Node* node);
 
 
 public:
@@ -26,7 +30,9 @@ public:
 	void Remove(int data);
 	void Print();
 
+	void Search(int data);
 	int SearchMin();
 	int SearchMax();
 
+	int Successor(int data);
 };

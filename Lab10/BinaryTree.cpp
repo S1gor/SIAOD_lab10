@@ -9,7 +9,7 @@ BinaryTree::Node* BinaryTree::InsertNode(Node* node, int data)
 	{
 		node = new Node;
 		node->data = data;
-		node->left = node->right = nullptr;
+		node->left = node->right = node->parent = nullptr;
 		node->counter = 1;
 		return node;
 	}
@@ -20,9 +20,15 @@ BinaryTree::Node* BinaryTree::InsertNode(Node* node, int data)
 		return node;
 	}
 	else if (data < node->data)
+	{
 		node->left = InsertNode(node->left, data);
+		node->left->parent = node;
+	}
 	else
+	{
 		node->right = InsertNode(node->right, data);
+		node->right->parent = node;
+	}
 
 	return node;
 }
@@ -52,7 +58,10 @@ BinaryTree::Node* BinaryTree::RemoveNode(Node* node, int data)
 			node = node->left;
 		else
 		{
-			// !!!
+			int successor = Successor(data);
+			node->data = successor;
+			node->counter = node->right->counter;
+			node->right = RemoveNode(node->right, successor);
 		}
 	}
 	else if (node->data < data)
@@ -61,6 +70,18 @@ BinaryTree::Node* BinaryTree::RemoveNode(Node* node, int data)
 		node->left = RemoveNode(node->left, data);
 
 	return node;
+}
+
+BinaryTree::Node* BinaryTree::SearchNode(Node* node, int data)
+{
+	if (node == NULL)	return NULL;
+
+	if (data == node->data)
+		return node;
+	else if (data < node->data)
+		return SearchNode(node->left, data);
+	else
+		return SearchNode(node->right, data);
 }
 
 int BinaryTree::SearchMinNode(Node* node)
@@ -75,6 +96,24 @@ int BinaryTree::SearchMaxNode(Node* node)
 	if (node == NULL)			return -1;
 	if (node->right == NULL)	return node->data;
 	else SearchMaxNode(node->right);
+}
+
+int BinaryTree::SuccessorNode(Node* node)
+{
+	if (node->right != NULL)		return SearchMinNode(node->right);
+	else
+	{
+		Node* parent_node = node->parent;
+		Node* current_node = node;
+
+		while ((parent_node != NULL) && (current_node == parent_node->right))
+		{
+			current_node = parent_node;
+			parent_node = current_node->parent;
+		}
+
+		return parent_node == NULL ? -1 : parent_node->data;
+	}
 }
 
 
@@ -95,6 +134,13 @@ void BinaryTree::Remove(int data)
 	root = RemoveNode(root, data);
 }
 
+void BinaryTree::Search(int data)
+{
+	Node* result = SearchNode(root, data);
+	if (result) cout << "The number " << data << " met " << result->counter << " once" << endl;
+	else cout << "There is no number " << data << endl;
+}
+
 int BinaryTree::SearchMin()
 {
 	return SearchMinNode(root);
@@ -103,4 +149,10 @@ int BinaryTree::SearchMin()
 int BinaryTree::SearchMax()
 {
 	return SearchMaxNode(root);
+}
+
+int BinaryTree::Successor(int data)
+{
+	Node* node = SearchNode(root, data);
+	return node == NULL ? -1 : SuccessorNode(node);
 }
