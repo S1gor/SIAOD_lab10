@@ -16,7 +16,10 @@ private:
 
 	Node* InsertNode(Node* node, int data);
 	Node* RemoveNode(Node* node, int data);
+
 	void PrintNode(Node* node);
+	void PrintPostNode(Node* node);
+	void PrintPreNode(Node* node);
 
 	Node* SearchNode(Node* node, int data);
 	int SearchMinNode(Node* node);
@@ -24,11 +27,13 @@ private:
 
 	int SuccessorNode(Node* node);
 
-
 public:
 	void Insert(int data);
 	void Remove(int data);
+
 	void Print();
+	void PrintPost();
+	void PrintPre();
 
 	void Search(int data);
 	int SearchMin();

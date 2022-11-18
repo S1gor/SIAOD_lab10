@@ -33,17 +33,6 @@ BinaryTree::Node* BinaryTree::InsertNode(Node* node, int data)
 	return node;
 }
 
-void BinaryTree::PrintNode(Node* node)
-{
-	if (node == NULL)	return;
-	
-	PrintNode(node->left);
-	cout << " " << node->data;
-	if (node->counter > 1)
-		cout << "x" << node->counter;
-	PrintNode(node->right);
-}
-
 BinaryTree::Node* BinaryTree::RemoveNode(Node* node, int data)
 {
 	if (node == NULL)			return NULL;
@@ -70,6 +59,39 @@ BinaryTree::Node* BinaryTree::RemoveNode(Node* node, int data)
 		node->left = RemoveNode(node->left, data);
 
 	return node;
+}
+
+void BinaryTree::PrintNode(Node* node)
+{
+	if (node == NULL)	return;
+	
+	PrintNode(node->left);
+	cout << " " << node->data;
+	if (node->counter > 1)
+		cout << "x" << node->counter;
+	PrintNode(node->right);
+}
+
+void BinaryTree::PrintPostNode(Node* node)
+{
+	if (node == NULL)	return;
+
+	PrintPostNode(node->left);
+	PrintPostNode(node->right);
+	cout << " " << node->data;
+	if (node->counter > 1)
+		cout << "x" << node->counter;
+}
+
+void BinaryTree::PrintPreNode(Node* node)
+{
+	if (node == NULL)	return;
+
+	cout << " " << node->data;
+	if (node->counter > 1)
+		cout << "x" << node->counter;
+	PrintPreNode(node->left);
+	PrintPreNode(node->right);
 }
 
 BinaryTree::Node* BinaryTree::SearchNode(Node* node, int data)
@@ -123,15 +145,27 @@ void BinaryTree::Insert(int data)
 	root = InsertNode(root, data);
 }
 
+void BinaryTree::Remove(int data)
+{
+	root = RemoveNode(root, data);
+}
+
 void BinaryTree::Print()
 {
 	PrintNode(root);
 	cout << endl;
 }
 
-void BinaryTree::Remove(int data)
+void BinaryTree::PrintPost()
 {
-	root = RemoveNode(root, data);
+	PrintPostNode(root);
+	cout << endl;
+}
+
+void BinaryTree::PrintPre()
+{
+	PrintPreNode(root);
+	cout << endl;
 }
 
 void BinaryTree::Search(int data)
