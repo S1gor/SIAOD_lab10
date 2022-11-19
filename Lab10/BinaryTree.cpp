@@ -152,18 +152,21 @@ void BinaryTree::Remove(int data)
 
 void BinaryTree::Print()
 {
+	cout << "Tree (LrR): ";
 	PrintNode(root);
 	cout << endl;
 }
 
 void BinaryTree::PrintPost()
 {
+	cout << "Tree (LRr): ";
 	PrintPostNode(root);
 	cout << endl;
 }
 
 void BinaryTree::PrintPre()
 {
+	cout << "Tree (rLR): ";
 	PrintPreNode(root);
 	cout << endl;
 }
