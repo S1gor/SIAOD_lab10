@@ -139,7 +139,6 @@ int BinaryTree::SuccessorNode(Node* node)
 }
 
 
-
 void BinaryTree::Insert(int data)
 {
 	root = InsertNode(root, data);

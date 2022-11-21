@@ -3,8 +3,6 @@
 
 using namespace std;
 
-// —оздать бинарное дерево и осуществить: добавление, удаление, поиск, обход дерева 3 способами.
-
 int main()
 {
 	BinaryTree a;
@@ -18,6 +16,13 @@ int main()
 	a.Insert(12);
 	a.Insert(90);
 	a.Insert(25);
+
+	a.Print();
+	a.PrintPre();
+	a.PrintPost();
+
+	a.Search(20);
+	a.Remove(20);
 
 	a.Print();
 	a.PrintPre();
